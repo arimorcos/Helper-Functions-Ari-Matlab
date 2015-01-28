@@ -1,0 +1,9 @@
+Changes from v6 to v6a
+----------------------
+- the function now checks (using MXGETNUMBEROFDIMENSIONS) that the number 
+  of dimensions of R is 3 before  asking for Ns = size(R,3). Since, when 
+  size(R,3) = 1, reading the number of elements in the 3rd dimension using 
+  MXGETDIMENSIONS will result in leakage.
+  
+  With this additional check is now possible to input response matrices
+  with just one stimulus index (this is useful e.g. for computing HR only).

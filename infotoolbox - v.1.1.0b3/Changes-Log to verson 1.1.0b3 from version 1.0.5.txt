@@ -1,0 +1,51 @@
+---------------------------
+MAJOR CHANGES AND ADDITIONS
+---------------------------
+Additions
+----------
+    - Added transfer-entropy module
+
+Changes to ENTROPY
+------------------
+    - Users can now plug-in their custom bias correction m-files (see ENTROPY documentation).
+    - It is now possible to chose for which output options (among HRS, HiRS, HshRS, CHiR, HiR) to perform the bootstrap.
+    - New faster gaussian method function.
+    - Bootstrapping of the response values is now computed inside the method
+      function for the gaussian method (rather than before calling the method).
+      This results in faster bootstrap computation.
+    - it is now possible to average over a specified number of repetitions of 
+      the selected extrapolation procedure (added option PARS.XTRP).
+    - The function now accepts single-stimulus cases.
+    - Added method 'gsfast'
+
+Changes to BINR
+---------------
+    - each response can now be binned individually with different options and parameters.
+    - returns -1 where the non-responses are located.
+
+Changes to BUILDR
+-----------------
+    - input must now be a matrix.
+    - no longer display verbose informations.
+
+Other
+-----
+Started to change the name of the toolbox from IBTB to INFOTOOLBOX.
+
+
+-------------
+MINOR CHANGES
+-------------
+- Extended and improved documentation for all functions in the toolbox.
+- BUILD_LOGICAL_MASK.M substituted by FINDTRIAL.M which can also handle 0-trials cases and is slightly faster.
+- Verbose mode won't check any longer whether all cells have been binned using the same number of bins.
+- Verbose mode won't check any longer whether cells have been binned using integers from 0 to Nb.
+- Verbose mode now performs checks on user-defined bias correction function.
+- Error messages on the input matrix now make use of the matrix variable name.
+- Fixed cpp comment in FASTCORR_V2 that prevented compilation with gcc.
+- Fixed bugs in MAKE_INFOLABwhich prevented from running under Linux
+
+---------
+BUG FIXES
+---------
+- Added missing condition in direct method engine which caused additional bias values to be computed uselessly for 'pt' bias correction.

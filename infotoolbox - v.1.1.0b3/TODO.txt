@@ -1,0 +1,8 @@
+- Fix BUILDR documentation
+- Finish TRANSFERENTROPY documentation
+- Write package creator
+- Write entropy function which accepts any type of input
+- add Robin's shuffle-sfhuffle
+- add information gain?
+- move QUADRATIC_EXTRAPOLATION_V3 inside ENTROPY
+- create SHUFFLE_R_ACROSS_TRIALS m-file

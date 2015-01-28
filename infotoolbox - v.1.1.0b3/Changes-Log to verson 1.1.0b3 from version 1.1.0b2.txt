@@ -1,0 +1,13 @@
+---------------------------
+MAJOR CHANGES AND ADDITIONS
+---------------------------
+
+Changes to TRANSFERENTROPY
+--------------------------
+    - function INTSHIFT4TRANSFERENTROPY (previously INTSHIFT) is      now included in the package;
+    - function INTSHIFT4TRANSFERENTROPY is several times faster (compared to version INTSHIFT);
+    - Fixed a bug when user specified both BTSP and TRPERM equal to zero (thanks to Joachim Gross for pointing it out)
+
+Changes to GAUSSIAN METHOD
+--------------------------
+    - Reverted the gaussian method function to GAUSSIAN_METHOD_v7_1_0. Version 11 based on FASTCOV_V2 turned out to be numerically much more unstable for large response dimensionality.

@@ -1,0 +1,4 @@
+QUADRATIC_EXTRAPOLATION_V3 is simply a wrapper around QUADRATIC_EXTRAPOLATION_V2
+implementing the loop over the extrapolation iterations. It is better to move
+this loop directly into ENTROPY so that also other extrapolation procedures
+can take advantage of it in the future.
