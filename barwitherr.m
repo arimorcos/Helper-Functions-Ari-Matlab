@@ -50,7 +50,7 @@
 %
 %**************************************************************************
 
-function barwitherr(errors,varargin)
+function handles = barwitherr(errors,varargin)
 
 % Check how the function has been called based on requirements for "bar"
 if nargin < 3
@@ -102,11 +102,11 @@ if nRows > 1
         % Use the mean x values to call the standard errorbar fn; the
         % errorbars will now be centred on each bar; these are in ascending
         % order so use xOrder to ensure y values and errors are too:
-        errorbar(mean(x,1),values(xOrder,col),lowerErrors(xOrder,col), upperErrors(xOrder, col), '.k')
+        handles.error = errorbar(mean(x,1),values(xOrder,col),lowerErrors(xOrder,col), upperErrors(xOrder, col), '.k');
     end
 else
-    x = get(get(handles.bar,'children'),'xdata');
-    errorbar(mean(x,1),values,errors,'.k')
+    x = handles.bar.XData;
+    handles.error = errorbar(mean(x,1),values,errors,'.k');
 end
 
 hold off
