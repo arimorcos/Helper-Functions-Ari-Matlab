@@ -540,6 +540,10 @@ switch pptOutputVersion
 end
 
 
+%delete toPPT 
+if exist('pptfig.tif','file')
+    delete('pptfig.tif');
+end
 
 end
 
