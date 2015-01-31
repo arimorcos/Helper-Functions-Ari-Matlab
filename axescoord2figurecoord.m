@@ -38,7 +38,8 @@ else
 end
 
 % get axes properties
-funit=get(get(h_axes,'Parent'),'Units');
+% funit=get(get(h_axes,'Parent'),'Units');
+funit = 'Normalized';
 % get axes properties
 aunit=get(h_axes,'Units');
 darm=get(h_axes,'DataAspectRatioMode');

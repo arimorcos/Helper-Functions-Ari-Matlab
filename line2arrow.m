@@ -1,4 +1,4 @@
-function varargout = line2arrow(h, varargin);
+function varargout = line2arrow(h, varargin)
 %LINE2ARROW Convert line to arrow
 %
 % line2arrow(h);
@@ -103,6 +103,9 @@ if nargout == 1
     varargout{1} = ha;
 end
 
+%delete original object
+delete(h);
+
 %-------------------------
 % Apply arrow to a line
 %-------------------------
@@ -168,9 +171,9 @@ end
 
 % Override with user options
 
-% if npv > 0
-%     Opt = parsepv(Opt, varargin{:});
-% end
+if npv > 0
+    Opt = parsepv(Opt, varargin{:});
+end
 
 
 if arrowexists

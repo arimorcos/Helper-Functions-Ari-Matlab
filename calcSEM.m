@@ -16,10 +16,10 @@ if nargin < 2 || isempty(dim)
 end
 
 %squeeze data 
-data = squeeze(data);
-if size(data,2) > size(data,1)
-    data = data';
-end
+% data = squeeze(data);
+% if size(data,2) > size(data,1)
+%     data = data';
+% end
 
 %calculate the standard deviation 
 dataSTD = std(data, 0, dim);
