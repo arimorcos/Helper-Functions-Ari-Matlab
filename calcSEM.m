@@ -22,7 +22,7 @@ end
 % end
 
 %calculate the standard deviation 
-dataSTD = std(data, 0, dim);
+dataSTD = nanstd(data, 0, dim);
 
 %get the length of the data 
 nVals = size(data, dim);
