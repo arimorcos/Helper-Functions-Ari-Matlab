@@ -1,4 +1,4 @@
-function varargout=sigstar(groups,stats,nosort,showNotSig)
+function varargout=sigstar(groups,stats,nosort,showNotSig,criteria)
 
 % SIGSTAR Add significance stars to bar charts, boxplots, line charts, etc,
 %
@@ -24,9 +24,9 @@ function varargout=sigstar(groups,stats,nosort,showNotSig)
 % NSORT -  optional, 0 by default. If 1, then significance markers are plotted in
 %          the order found in GROUPS. If 0, then they're sorted by the length of the
 %          bar.
-%
 % SHOWNOTSIG - optional, false by default. If true, show comparisons even
 %              if not significant
+% CRITERIA - 1 x 3 array of criterion for significance
 %
 % Outputs
 % H - optionally return handles for significance highlights. Each row is a different
@@ -88,12 +88,16 @@ end
 if isempty(stats)
     stats=repmat(0.05,1,length(groups));
 end
-if nargin<3
+if nargin<3 || isempty(nosort)
     nosort=0;
 end
 
-if nargin < 4
+if nargin < 4 || isempty(showNotSig)
     showNotSig = false;
+end
+
+if nargin < 5 || isempty(criteria)
+    criteria = [0.05 1e-2 1e-3];
 end
 
 
@@ -191,9 +195,9 @@ y=ylim;
 yd=myRange(y)*0.05; %separate sig bars vertically by 5%
 
 for ii=1:length(groups)
-    if showNotSig || stats(ii) <= 0.05
+    if showNotSig || stats(ii) <= criteria(1)
         thisY=findMinY(xlocs(ii,:))+yd;
-        H(ii,:)=makeBar(xlocs(ii,:),thisY,stats(ii));
+        H(ii,:)=makeBar(xlocs(ii,:),thisY,stats(ii),criteria);
     end
 end
 %-----------------------------------------------------
@@ -208,7 +212,7 @@ end
 %for all bars.
 yd=myRange(ylim)*0.01; %Ticks are 1% of the y axis range
 for ii=1:length(groups)
-    if showNotSig || stats(ii) <= 0.05
+    if showNotSig || stats(ii) <= criteria(1)
         y=get(H(ii,1),'YData');
         y(1)=y(1)-yd;
         y(4)=y(4)-yd;
@@ -240,16 +244,16 @@ end
 %Internal functions
 
 
-function H=makeBar(x,y,p)
+function H=makeBar(x,y,p,criteria)
 %makeBar produces the bar and defines how many asterisks we get for a
 %given p-value
 
 
-if p<=1E-3
+if p<=criteria(3)
     stars='***';
-elseif p<=1E-2
+elseif p<=criteria(2)
     stars='**';
-elseif p<=0.05
+elseif p<=criteria(1)
     stars='*';
 elseif isnan(p)
     stars='n.s.';
@@ -349,7 +353,12 @@ for ii=1:length(p)
     overlapping=xd>0; %These x locations overlap
     
     if ~any(overlapping)
-        continue
+        xd=get(p(ii),'XData');
+        if all(xd<x(1)) || all(xd>x(2))
+            continue
+        end
+        xd(xd>x(2)) = 0;
+        overlapping = ones(size(xd));
     end
     
     clear xd
