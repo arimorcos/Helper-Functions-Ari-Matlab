@@ -327,8 +327,11 @@ Y=max(yd(:));
 %check if errorbar 
 if ~isempty(findobj(gca,'Type','ErrorBar'))
     eB = findobj(gca,'Type','ErrorBar');
-    ydEB = eB.YData(xd>0) + eB.UData(xd>0);
-    Y = max(cat(2,Y,ydEB));
+    for i = 1:length(eB)
+        ydEB = eB(i).YData(xd>0) + eB(i).UData(xd>0);
+        tempY(i) = max(cat(2,Y,ydEB));
+    end
+    Y = max(tempY);
 end
 
 %Now let's check if any other plot elements (such as significance bars we've

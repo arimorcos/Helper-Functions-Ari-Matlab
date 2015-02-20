@@ -21,6 +21,12 @@ end
 %     data = data';
 % end
 
+%check if empty 
+if isempty(data)
+    sem = NaN;
+    return;
+end
+
 %calculate the standard deviation 
 dataSTD = nanstd(data, 0, dim);
 
