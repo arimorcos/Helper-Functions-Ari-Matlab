@@ -732,6 +732,9 @@ end
 
 
 
+%delet temp file 
+delete('pptfig.tif');
+
 end
 
 end
