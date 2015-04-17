@@ -733,7 +733,9 @@ end
 
 
 %delet temp file 
-delete('pptfig.tif');
+if exist('pptfig.tif','file')
+    delete('pptfig.tif');
+end
 
 end
 
