@@ -733,7 +733,7 @@ end
 
 
 %delet temp file 
-if exist('pptfig.tif','file')
+if exist(fullfile(cd,'pptfig.tif'),'file')
     delete('pptfig.tif');
 end
 
