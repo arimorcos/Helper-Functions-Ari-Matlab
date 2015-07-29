@@ -1,4 +1,4 @@
-function modifyForEPS(axH,revert)
+function modifyTransGraphforEPS(axH,revert)
 
 if nargin < 2 || isempty(revert)
     revert = false;
@@ -36,6 +36,19 @@ for i = 1:length(axH)
         axH(i).FontSize = 6;
         axH(i).XLabel.FontSize = 7;
         axH(i).YLabel.FontSize = 7;
+        
+        % get children
+        axChildren = axH(i).Children;
+        scaleFacLines = 0.01;
+        scaleFac = 0.1;
+        for child = 1:length(axChildren)
+            if strcmpi(axChildren(child).Type,'line')
+                axChildren(child).LineWidth = scaleFac*axChildren(child).LineWidth;
+            elseif strcmpi(axChildren(child).Type,'scatter')
+                axChildren(child).LineWidth = scaleFac*axChildren(child).LineWidth;
+                axChildren(child).SizeData = scaleFac*axChildren(child).SizeData;
+            end
+        end
     end
 end
 
