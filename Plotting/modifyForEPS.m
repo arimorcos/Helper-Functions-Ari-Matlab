@@ -32,7 +32,7 @@ for i = 1:length(axH)
         % font to arial
         axH(i).FontName = 'Arial';
         axH(i).Units = 'centimeters';
-        axH(i).Position = [2 2+5*(i-1) 4 4];
+        axH(i).Position = [2 2+5*(i-1) 3.2 3.2];
         axH(i).FontSize = 6;
         axH(i).XLabel.FontSize = 7;
         axH(i).YLabel.FontSize = 7;
@@ -44,5 +44,5 @@ for i = 1:length(cH)
     cH(i).FontSize = 6;
     cH(i).Label.FontSize = 7;
     cH(i).Units = 'centimeters';
-    cH(i).Position = [7 2+5*(i-1) 0.5 4];
+    cH(i).Position = [7 2+5*(i-1) 0.5 3.2];
 end
