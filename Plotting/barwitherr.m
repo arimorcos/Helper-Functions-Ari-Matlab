@@ -77,18 +77,18 @@ if nargin < 3
     xOrder = 1:size(values,1);
 else
     % This means extra parameters have been specified
-    if isscalar(varargin{2}) || ischar(varargin{2})
-        % It is a width / property so the y values are still varargin{1}
-        values = varargin{1};
-        xOrder = 1:size(values,1);
-    else
+%     if isscalar(varargin{2}) || ischar(varargin{2})
+%         % It is a width / property so the y values are still varargin{1}
+%         values = varargin{1};
+%         xOrder = 1:size(values,1);
+%     else
         % x-values have been specified so the y values are varargin{2}
         % If x-values have been specified, they could be in a random order,
         % get their indices in ascending order for use with the bar
         % locations which will be in ascending order:
         values = varargin{2};
         [tmp xOrder] = sort(varargin{1});
-    end
+%     end
 end
 
 % If an extra dimension is supplied for the errors then they are

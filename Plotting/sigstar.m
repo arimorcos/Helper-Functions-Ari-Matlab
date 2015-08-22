@@ -294,7 +294,10 @@ if verLessThan('matlab','8.4.0')
     xd=get(p,'XData');
 else
     p=findobj(gca,'Type','bar');
-    xd=p.XData;
+    xd = p.XData;
+    if length(xd) == 1
+        xd=[p(:).XData];
+    end
 end
 
 
@@ -312,6 +315,9 @@ if verLessThan('matlab','8.4.0')
     yd=get(p,'YData');
 else
     yd=p.YData;
+    if length(yd) == 1
+        yd = [p(:).YData];
+    end
 end
 
 if iscell(yd) && verLessThan('matlab','8.4.0')
