@@ -1,25 +1,38 @@
-function decreaseMarkerSize(axH,size)
+function decreaseMarkerSize(figH,size)
 %
 %
 
 
 
-%get chilren 
-children = axH.Children;
+if strcmpi(figH.Type,'figure')
+    axH = figH.Children;
+elseif strcmpi(figH.Type,'axes')
+    axH = figH;
+end
+nAx = length(axH);
 
-%loop through
-for child = 1:length(children)
+for ax = 1:nAx
     
-    if strcmpi(children(child).Type,'line')
-        children(child).MarkerSize = size;
-    end
+    %get chilren
+    children = axH(ax).Children;
     
-    if strcmpi(children(child).Type,'errorbar')
-        children(child).MarkerSize = size;
-    end
-    
-    if strcmpi(children(child).Type,'scatter')
-        children(child).SizeData = size;
+    %loop through
+    for child = 1:length(children)
+        
+        if strcmpi(children(child).Type,'line')
+            children(child).MarkerSize = size;
+        end
+        
+        if strcmpi(children(child).Type,'errorbar')
+            children(child).MarkerSize = size;
+        end
+        
+        if strcmpi(children(child).Type,'scatter')
+            children(child).SizeData = size;
+        end
+        
+        if strcmpi(children(child).Type,'text')
+            children(child).FontSize = 6;
+        end
     end
 end
-        

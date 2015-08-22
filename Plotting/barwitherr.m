@@ -117,7 +117,8 @@ hold on
 hBar = handles.bar;
 
 if nRows > 1
-    hErrorbar = gobjects(1,nCols);
+    hErrorbar = gobjects(3*length(hBar(1).XData),nCols);
+%     hErrorbar = gobjects(1,nCols);
     for col = 1:nCols
         % Extract the x location data needed for the errorbar plots:
         if verLessThan('matlab', '8.4')
@@ -130,8 +131,9 @@ if nRows > 1
         % Use the mean x values to call the standard errorbar fn; the
         % errorbars will now be centred on each bar; these are in ascending
         % order so use xOrder to ensure y values and errors are too:
-        hErrorbar(col) = errorbar(mean(x,1), values(xOrder,col), lowerErrors(xOrder,col), upperErrors(xOrder, col), '.k');
-        set(hErrorbar(col), 'marker', 'none')
+%         hErrorbar(col) = errorbar(mean(x,1), values(xOrder,col), lowerErrors(xOrder,col), upperErrors(xOrder, col), '.k');
+        hErrorbar(:,col) = terrorbar(mean(x,1), values(xOrder,col), lowerErrors(xOrder,col), upperErrors(xOrder, col), 0);
+%         set(hErrorbar(col), 'marker', 'none')
     end
 else
     if verLessThan('matlab', '8.4')
@@ -142,7 +144,8 @@ else
        x =  handles.bar.XData + [handles.bar.XOffset];
    end
     
-    hErrorbar = errorbar(mean(x,1), values, lowerErrors, upperErrors, '.k');
+%     hErrorbar = errorbar(mean(x,1), values, lowerErrors, upperErrors, '.k');
+    hErrorbar = terrorbar(mean(x,1), values, lowerErrors, upperErrors, 0);
     set(hErrorbar, 'marker', 'none')
 end
 
