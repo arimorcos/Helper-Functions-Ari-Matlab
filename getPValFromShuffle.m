@@ -29,4 +29,20 @@ else
 end
 
 %get pValues
-pVal = ind/nShuffles;
+pVal = 1 - ind/nShuffles;
+
+if isempty(pVal)
+    if higher
+        if real >= max(shuffle)
+            pVal = 1/length(shuffle);
+        else 
+            pVal = 1;
+        end
+    else
+        if real <= min(shuffle)
+            pVal = 1/length(shuffle);
+        else
+            pVal = 1;
+        end
+    end
+end
