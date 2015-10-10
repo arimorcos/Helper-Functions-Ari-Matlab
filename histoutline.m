@@ -32,6 +32,6 @@ end
 if smooth
     h = plot(x, cat(2,0,n));
 else
-    h = stairs(x, cat(2,0,n));
-    % h = stairs(x, cat(2,n(1),n));
+%     h = stairs(x, cat(2,0,n));
+    h = stairs(x, cat(2,n, n(end)));
 end
