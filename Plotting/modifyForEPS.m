@@ -32,7 +32,11 @@ for i = 1:length(axH)
         % font to arial
         axH(i).FontName = 'Arial';
         axH(i).Units = 'centimeters';
-        axH(i).Position = [2 2+5*(i-1) 3.2 3.2];
+        if i > 4
+            axH(i).Position = [2+5*(i-1) 2 3.2 3.2];
+        else
+            axH(i).Position = [2 2+5*(i-1) 3.2 3.2];
+        end
         axH(i).FontSize = 6;
         axH(i).XLabel.FontSize = 7;
         axH(i).YLabel.FontSize = 7;

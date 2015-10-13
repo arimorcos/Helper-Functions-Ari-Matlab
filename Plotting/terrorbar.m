@@ -118,12 +118,12 @@ oldhold=ishold; %will reset this later
 
 %plot horizontal bars. We'll worry about their correct width in a separate
 %subfunction, just to avoid duplication of code
-for ii=length(x):-1:1
-    h(ii+2*length(x))=plot([x(ii)-initbarwidth x(ii)+initbarwidth],[1 1]*(val(ii)+uppererror(ii)),'k-');
-    if ii==length(x); hold on; end;
-    h(ii+length(x))=plot([x(ii)-initbarwidth x(ii)+initbarwidth],[1 1]*(val(ii)-lowererror(ii)),'k-');
-end;
-set(h(length(x)+1:3*length(x)),'UserData',{828399489 errorbarwidth errorbarunits}) %useful for resizing later; 828399489 is just an arbitrary code that should be easy to distinguish from any other UserData in an image
+% for ii=length(x):-1:1
+%     h(ii+2*length(x))=plot([x(ii)-initbarwidth x(ii)+initbarwidth],[1 1]*(val(ii)+uppererror(ii)),'k-');
+%     if ii==length(x); hold on; end;
+%     h(ii+length(x))=plot([x(ii)-initbarwidth x(ii)+initbarwidth],[1 1]*(val(ii)-lowererror(ii)),'k-');
+% end;
+% set(h(length(x)+1:3*length(x)),'UserData',{828399489 errorbarwidth errorbarunits}) %useful for resizing later; 828399489 is just an arbitrary code that should be easy to distinguish from any other UserData in an image
 
 %plot the vertical lines of the error bars
 for ii=length(x):-1:1
@@ -138,7 +138,7 @@ else
 end;
 
 %now set the width of the error bars to what they should have been
-internal_tweakspecificerrorbars(h,errorbarwidth,errorbarunits)
+% internal_tweakspecificerrorbars(h,errorbarwidth,errorbarunits)
 
 %the following line means that changing the Figure size will redraw the error bars according to the current rules
 set(gcf,'SizeChangedFcn','terrorbar') %calls back main function from this file
