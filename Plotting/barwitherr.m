@@ -117,7 +117,7 @@ hold on
 hBar = handles.bar;
 
 if nRows > 1
-    hErrorbar = gobjects(3*length(hBar(1).XData),nCols);
+    hErrorbar = gobjects(length(hBar(1).XData),nCols);
 %     hErrorbar = gobjects(1,nCols);
     for col = 1:nCols
         % Extract the x location data needed for the errorbar plots:
