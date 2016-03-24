@@ -33,5 +33,7 @@ if smooth
     h = plot(x, cat(2,0,n));
 else
 %     h = stairs(x, cat(2,0,n));
-    h = stairs(x, cat(2,n, n(end)));
+%     h = stairs(x, cat(2,n, n(end)));
+    mean_diff = mean(diff(x));
+    h = stairs(cat(2, x(1) - mean_diff, x, x(end) + mean_diff), cat(2, 0, n, n(end), 0));
 end
